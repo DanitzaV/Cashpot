@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PrintReclamo from './PrintReclamo.js';
+import fire from '../config/fire.js'
 
 class Reclamo extends Component {
     constructor(props) {
@@ -9,6 +10,32 @@ class Reclamo extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+
+    handleChange(e) {
+        this.setState({ text: e.target.value });
+
+    }
+
+    handleSubmit(e) {
+        e.preventDefault();
+        if (!this.state.text.length) {
+            return;
+        }
+        const newItem = {
+            text: this.state.text,
+            id: Date.now()
+        };
+        this.setState(state => ({
+            items: state.items.concat(newItem),
+            text: ''
+        }));
+
+        const newMessageKey = fire.database().ref().child('postclaim').push().key;
+        fire.database().ref(`postclaim/${newMessageKey}`).set({
+            text: this.state.text,
+        })
+
+    }
     render() {
         return (
             <div>
@@ -27,30 +54,12 @@ class Reclamo extends Component {
                         Enviar
                     </button>
                     <PrintReclamo items={this.state.items} />
-
                 </form>
             </div>
         );
     }
 
-    handleChange(e) {
-        this.setState({ text: e.target.value });
-    }
 
-    handleSubmit(e) {
-        e.preventDefault();
-        if (!this.state.text.length) {
-            return;
-        }
-        const newItem = {
-            text: this.state.text,
-            id: Date.now()
-        };
-        this.setState(state => ({
-            items: state.items.concat(newItem),
-            text: ''
-        }));
-    }
 }
 
 export default Reclamo;
