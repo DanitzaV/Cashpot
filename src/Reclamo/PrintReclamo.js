@@ -4,8 +4,9 @@ class PrintReclamo extends Component {
     render() {
       return (
         <div>
+            
           {this.props.items.map(item => (
-            <div key={item.id}>{item.text}</div> 
+            <div key={item.id}>{item.text}{item.year}</div> 
           ))}
         </div>
       );
@@ -13,3 +14,4 @@ class PrintReclamo extends Component {
   }
   
   export default PrintReclamo;
+  

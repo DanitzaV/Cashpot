@@ -6,6 +6,7 @@ class Reclamo extends Component {
     constructor(props) {
         super(props);
         this.state = { items: [], text: '' };
+        console.log(items)
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -29,10 +30,11 @@ class Reclamo extends Component {
             items: state.items.concat(newItem),
             text: ''
         }));
-
+        const horas = new Date().toLocaleString();
         const newMessageKey = fire.database().ref().child('postclaim').push().key;
         fire.database().ref(`postclaim/${newMessageKey}`).set({
             text: this.state.text,
+            year: horas
         })
 
     }
@@ -53,6 +55,7 @@ class Reclamo extends Component {
                     <button>
                         Enviar
                     </button>
+                   
                     <PrintReclamo items={this.state.items} />
                 </form>
             </div>
