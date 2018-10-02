@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ModaApp from './Modal/Modal'
 import FooterNav from './FooterNav/FooterNav'
+import Reclamo from './Reclamo/Reclamo.js'
 import './App.css';
 
 class App extends Component {
@@ -9,6 +10,7 @@ class App extends Component {
       <div className="App">
         <ModaApp/>
         <FooterNav/>
+        <Reclamo/>
       </div>
     );
   }
