@@ -1,0 +1,14 @@
+.footer{
+    background-color: #F9F9F9;
+    height: 50px;
+}
+
+.btnFooter{
+    position: absolute;
+    top: 20px;
+    background-color: white;
+}
+
+.iconFooter{
+    color:#00A9A9;
+}
