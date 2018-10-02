@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import logo2 from './logo2.png'
 import firebase from 'firebase';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 
@@ -10,7 +11,7 @@ firebase.initializeApp({
 
 class Login extends Component {
 
-  state = { isSignedIn: false };
+  state = { isSignedIn: false, };
 
   uiConfig = {
     signInFlow: "popup",
@@ -38,25 +39,30 @@ class Login extends Component {
     return (
       <div className="App">
         {this.state.isSignedIn ? (
-          <div class="container-fluid">
-            <div class="row">
-              <div class="col-6 offset-3 text-center">
-                <div>
-                  <img class="mt-5" alt="foto" src={firebase.auth().currentUser.photoURL} />
-                  <h1 class="mt-3">Bienvenida a la aplicación {firebase.auth().currentUser.displayName} </h1>
-                  <button type="button" class="btn btn-success" onClick={this.logOut}>Salir</button>
-                </div>
+
+          <div className="container-fluid">
+            <div className="row">
+              <div className="col-6 offset-3 text-center">
+                <img className="profile mt-5" alt="foto" src={firebase.auth().currentUser.photoURL} />
+                <h1 className="mt-3">Bienvenida a la aplicación {firebase.auth().currentUser.displayName} </h1>
+                <button type="button" className="btn btn-success" onClick={this.logOut}>Salir</button>
               </div>
             </div>
           </div>) : (
+
             <div className="container-fluid">
-              <div class="row">
-                <div class="col-6 offset-3 text-center">
-                  <div class="container-fluid pt-5">
-                    <StyledFirebaseAuth
-                      uiConfig={this.uiConfig}
-                      firebaseAuth={firebase.auth()} />
-                  </div>
+              <div className="row">
+                <div className="col-6 offset-3 text-center">
+                  <img src={logo2} className="App-logo" alt="logo" />
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-10 offset-1 text-center pt-5">
+                <p>Elige tu método de inicio de sesión</p>
+                <hr/>
+                  <StyledFirebaseAuth
+                    uiConfig={this.uiConfig}
+                    firebaseAuth={firebase.auth()} />
                 </div>
               </div>
             </div>
